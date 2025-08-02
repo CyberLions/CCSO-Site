@@ -7,28 +7,20 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
 
-# Production stage
-FROM node:22-alpine
-
-WORKDIR /app
-
-# Copy package files and install production dependencies
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Copy built files from builder
-COPY --from=builder /app/* ./
-
 # Set environment variables
 ENV NODE_ENV=production
 
-# Expose API port
-EXPOSE 80
+# Build the Strapi application for production
+RUN npm run build
 
-# Start the application
-CMD ["node", "index.js"]
+# Expose API port
+EXPOSE 3000
+
+# Define a script to run the commands
+# This ensures that 'npm run start' executes only if 'npm run crack' is successful
+CMD ["sh", "-c", "npm run crack && npm run start"]
