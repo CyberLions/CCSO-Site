@@ -108,20 +108,9 @@
 
     <!-- Calendar Section -->
     <section class="home-calendar content-section">
-      <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="section-title">&lt;Upcoming Events/&gt;</h2>
-        <div class="bg-white rounded-lg shadow-lg p-8">
-          <p class="text-gray-600 mb-4">
-            Stay updated with our latest events and meetings
-          </p>
-          <router-link 
-            to="/get-involved" 
-            class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200"
-          >
-            <CalendarIcon class="w-5 h-5 mr-2" />
-            View Full Calendar
-          </router-link>
-        </div>
+        <CalendarWidget />
       </div>
     </section>
   </div>
@@ -143,6 +132,7 @@ import {
 import FlipCard from '@/components/FlipCard.vue'
 import DiscordIcon from '@/components/icons/DiscordIcon.vue'
 import RotatingGallery from '@/components/RotatingGallery.vue'
+import CalendarWidget from '@/components/CalendarWidget.vue'
 import { useHome, useWhatWeDo } from '@/composables/useStrapi'
 import { getStrapiMediaUrl } from '@/utils/api'
 
@@ -160,7 +150,8 @@ export default {
     FlagIcon,
     FlipCard,
     DiscordIcon,
-    RotatingGallery
+    RotatingGallery,
+    CalendarWidget
   },
   setup() {
     // Initialize composables
@@ -229,3 +220,56 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* Mobile improvements for homepage header */
+@media (max-width: 768px) {
+  .home-about {
+    padding-top: 2rem;
+  }
+  
+  .home-about .featured-section {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .home-about .section-title {
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+  }
+  
+  .home-about .grid {
+    gap: 2rem;
+  }
+  
+  .home-about p {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .home-about .discord-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-about {
+    padding-top: 1.5rem;
+  }
+  
+  .home-about .featured-section {
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    margin: 0.5rem 0.5rem;
+  }
+  
+  .home-about .section-title {
+    margin-bottom: 1.5rem;
+    padding-top: 0.5rem;
+  }
+}
+</style>

@@ -18,6 +18,11 @@ const routes = [
     component: () => import('../views/GetInvolvedView.vue'),
   },
   {
+    path: '/calendar',
+    name: 'calendar',
+    component: () => import('../views/CalendarView.vue'),
+  },
+  {
     path: '/competitions',
     name: 'competitions',
     component: () => import('../views/CompetitionsView.vue'),
