@@ -5,18 +5,18 @@ ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /opt/
-COPY package.json package-lock.json ./
-RUN npm install -g node-gyp
-RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --only=production
+COPY package.json yarn.lock ./
+RUN yarn global add node-gyp
+RUN yarn config set network-timeout 600000 -g && yarn install --production
 ENV PATH=/opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
-RUN npm run build
+RUN yarn build
 
 # Creating final production image
 FROM node:22-alpine
 RUN apk add --no-cache vips-dev openssl
-ARG NODE_ENV=production
+ENV NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
 COPY --from=build /opt/node_modules ./node_modules
@@ -27,4 +27,4 @@ ENV PATH=/opt/node_modules/.bin:$PATH
 RUN chown -R node:node /opt/app
 EXPOSE 3000
 
-CMD ["sh", "-c", "npm run crack && npm run start"]
+CMD ["yarn", "start"]
