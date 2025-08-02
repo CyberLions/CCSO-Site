@@ -1,32 +1,22 @@
-# Creating multi-stage build for production
-FROM node:22-alpine AS build
-RUN apk update && apk add --no-cache openssl build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+# Use lightweight Alpine image for faster builds
+FROM node:22-bullseye
 
-WORKDIR /opt/
-COPY package.json yarn.lock ./
-RUN yarn global add node-gyp
-RUN yarn config set network-timeout 600000 -g && yarn install --production
-RUN npx @yek-plus/strapi-crack
-ENV PATH=/opt/node_modules/.bin:$PATH
-WORKDIR /opt/app
-COPY . .
-RUN yarn build
-
-# Creating final production image
-FROM node:22-alpine
-RUN apk add --no-cache vips-dev
+# Set working directory and environment variables
+WORKDIR /app
 ENV NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-WORKDIR /opt/
-COPY --from=build /opt/node_modules ./node_modules
-COPY --from=build /opt/license.txt ./
-WORKDIR /opt/app
-COPY --from=build /opt/app ./
-ENV PATH=/opt/node_modules/.bin:$PATH
+ENV HOST=0.0.0.0
 
-RUN chown -R node:node /opt/app
+# Copy package files first for dependency caching
+#COPY package*.json ./
+
+# Install dependencies (use npm ci for production)
+#RUN npm install --include=dev
+
+# Copy source code (excluded via .dockerignore)
+COPY . .
+
+# Expose dev server port
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+# Start Vite dev server with hot reload and improved file watching
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--watch"]
