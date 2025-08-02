@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "competitions",
+  "info": {
+    "singularName": "competition",
+    "pluralName": "competitions",
+    "displayName": "Competition"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "placement": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text"
+    },
+    "article_url": {
+      "type": "string"
+    },
+    "members": {
+      "type": "text"
+    },
+    "picture": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  }
+}

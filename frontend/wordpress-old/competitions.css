@@ -1,0 +1,79 @@
+/*Designed and Developed by Aiden Johnson | TGM.One*/
+h2.section-title {
+  margin-top: 1em;
+}
+section.year {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.competition {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 2em;
+}
+.competition-details {
+    flex: 1 1 calc(50% - 32px);
+    background-color: #00000087;
+    border: 6px solid;
+    border-image-slice: 1;
+    border-width: 6px;
+    border-radius: 6px;
+    border-image-source: linear-gradient(to right, #007BFF, #0065D1, #007BFF);
+    padding: 20px;
+    text-align: center;
+    color: #AEB6D5;
+}
+.competition .members-img {
+    flex: 1 1 calc(50% - 32px);
+    contain: strict;
+    border-radius: 10px;
+    height: auto;
+}
+.members-img img {
+    border-radius: 10px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.competition-details h2 {
+    display: inline-block;
+    color: #AEB6D5;
+    margin-bottom: 30px;
+}
+.competition-details .placing {
+    display: inline-block;
+    color: #F4C267;
+}
+.competition-details .excerpt {
+    display: block;
+    color: #AEB6D5;
+    text-decoration: underline;
+    margin-bottom: 30px;
+}
+.competition-details .members {
+    font-size: 11px;
+}
+
+@media (max-width: 780px) {
+    .competition {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .competition-details {
+        flex: 1 1 calc(100%);
+        order: 2;
+        margin: 0 2em;
+    }
+    .competition .members-img {
+        flex: 1 1 calc(100%);
+        max-height: 300px;
+        contain: content;
+        order: 1;
+    }
+    .members-img img {
+        max-height: 300px;
+        height: 100%;
+        width: auto;
+        object-fit: scale-down;
+    }
+}

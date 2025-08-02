@@ -1,0 +1,52 @@
+/* Designed and Developed by Isabella.Masso | Fuck.You */
+
+.mixer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5em 1em;
+  color: #ffffff;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+.mixer-container strong {
+  color: #8594C0;
+}
+.mixer-container a {
+  color: #8594C0;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+.mixer-container a:hover {
+  color: #ffffff;
+}
+.mixer-container ul {
+  list-style-type: disc;
+  margin: 1em 0 1em 2em;
+}
+.mixer-container p {
+  margin-bottom: 1em;
+}
+.mixer-details-box {
+  background-color: #00000087;
+  border: 2px solid #0761c2;
+  border-radius: 6px;
+  padding: 1.5em;
+  margin: 2em 0;
+}
+.mixer-container em {
+  color: #cccccc;
+}
+
+@media (max-width: 768px) {
+  .mixer-container {
+    font-size: 1.05em;
+  }
+}
+
+@media (max-width: 480px) {
+  .mixer-container {
+    font-size: 1em;
+    padding: 1em 0.5em;
+  }
+}

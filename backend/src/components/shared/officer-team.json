@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_officer_teams",
+  "info": {
+    "displayName": "Officer Team",
+    "icon": "manyToOne"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "officer": {
+      "type": "component",
+      "component": "shared.officer",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

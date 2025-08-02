@@ -1,0 +1,56 @@
+/*Designed and Developed by Aiden Johnson | TGM.One*/
+section.sponsors-cont {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tier h2 {
+    color: #25acb7;
+    font-size: 2em;
+    margin-top: 1em;
+    margin-bottom: .5em;
+}
+.tier-sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+}
+.sponsor {
+    flex: 1 1 calc(30% - 16px);
+    max-width: 30%;
+    background-color: #212121;
+    position: relative;
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: linear-gradient(to right, #25acb7, #006a73, #25acb7);
+    padding: 20px;
+    color: white;
+    height: 250px;
+}
+.sponsor img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    padding:10px;
+}
+.sponsor h3 {
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+@media (max-width: 780px) {
+    .sponsor {
+        flex: 1 1 calc(100%);
+        max-width: 80%;
+    }
+}

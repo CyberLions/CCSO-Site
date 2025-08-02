@@ -1,0 +1,32 @@
+/*Designed and Developed by Aiden Johnson | TGM.One*/
+.resources-cont {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.resource {
+    background-color: #00000087;    
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 5px;
+    border-image-source: linear-gradient(to right, #007BFF, #0065D1, #007BFF);
+    padding:10px;
+    margin-bottom: 1em;
+}
+.resource h3{
+    border-bottom: 5px solid;
+    border-color: #007BFF;
+    margin: 0 -10px;
+    padding: 0 10px;
+    padding-bottom: 10px;
+    color: #9AA5CB;
+}
+.resource div{
+    color: #9AA5CB;
+    padding: 5px 5px 0 5px;
+}
+.resource a{
+    color: #2E93FF;
+}
+.resource ul{
+    padding-left: 20px;
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "boards",
+  "info": {
+    "singularName": "board",
+    "pluralName": "boards",
+    "displayName": "Board"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "year": {
+      "type": "biginteger",
+      "required": true,
+      "unique": true
+    },
+    "team": {
+      "type": "component",
+      "component": "shared.officer-team",
+      "repeatable": true
+    }
+  }
+}
