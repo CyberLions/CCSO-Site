@@ -33,6 +33,14 @@ export default defineConfig({
       usePolling: true,
       interval: 1000,
       followSymlinks: false
+    },
+    // Proxy API requests to Strapi backend
+    proxy: {
+      '/api': {
+        target: 'http://localhost:1337',
+        changeOrigin: true,
+        secure: false,
+      }
     }
   }
 })

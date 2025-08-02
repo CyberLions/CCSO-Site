@@ -1,26 +1,31 @@
 import ICAL from 'ical.js'
+import { buildStrapiUrl } from './api.js'
 
-// Calendar configuration with colors
+// Calendar configuration with colors and IDs
 export const CALENDAR_CONFIG = {
   blueTeam: {
+    id: 'enqQ8jmjJrpyPFjG',
     url: 'https://nextcloud.psuccso.org/remote.php/dav/public-calendars/enqQ8jmjJrpyPFjG?export',
     name: 'Blue Team',
     color: '#3B82F6', // Blue
     bgColor: '#DBEAFE'
   },
   redTeam: {
+    id: 'g2zxnZC5degDENYs',
     url: 'https://nextcloud.psuccso.org/remote.php/dav/public-calendars/g2zxnZC5degDENYs?export',
     name: 'Red Team',
     color: '#EF4444', // Red
     bgColor: '#FEE2E2'
   },
   general: {
+    id: 'HtiSPQPGJWnRqi4m',
     url: 'https://nextcloud.psuccso.org/remote.php/dav/public-calendars/HtiSPQPGJWnRqi4m?export',
     name: 'General',
     color: '#10B981', // Green
     bgColor: '#D1FAE5'
   },
   ctfs: {
+    id: 'cFLaji4Gx8YXb6R6',
     url: 'https://nextcloud.psuccso.org/remote.php/dav/public-calendars/cFLaji4Gx8YXb6R6?export',
     name: 'CTFs',
     color: '#8B5CF6', // Purple
@@ -28,32 +33,29 @@ export const CALENDAR_CONFIG = {
   }
 }
 
-// Fetch ICS data from URL using CORS proxy only in development
-async function fetchICSData(url) {
+// Fetch ICS data from URL using Strapi CORS proxy
+async function fetchICSData(url, calendarId) {
   try {
-    // In development, use CORS proxy; in production, fetch directly
-    const isDevelopment = import.meta.env.DEV
+    // Use our Strapi CORS proxy to bypass CORS restrictions
+    // Use the same API URL pattern as other API calls
+    const proxyUrl = buildStrapiUrl(`/calendar-proxy/${calendarId}`)
     
-    if (isDevelopment) {
-      // Use CORS proxy to bypass CORS restrictions in development
-      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
-      const response = await fetch(proxyUrl)
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch calendar via proxy: ${response.status}`)
+    // Include API token in headers like other Strapi requests
+    const STRAPI_API_TOKEN = import.meta.env.VITE_STRAPI_API_TOKEN
+    
+    const response = await fetch(proxyUrl, {
+      headers: {
+        'Authorization': `Bearer ${STRAPI_API_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
       }
-      
-      return await response.text()
-    } else {
-      // In production, fetch directly
-      const response = await fetch(url)
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch calendar: ${response.status}`)
-      }
-      
-      return await response.text()
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch calendar via proxy: ${response.status}`)
     }
+    
+    return await response.text()
   } catch (error) {
     console.error('Error fetching ICS data:', error)
     return null
@@ -109,11 +111,9 @@ export async function fetchAllCalendars() {
   
   for (const [key, config] of Object.entries(CALENDAR_CONFIG)) {
     try {
-      console.log(`Fetching calendar: ${config.name}`)
-      const icsData = await fetchICSData(config.url)
+      const icsData = await fetchICSData(config.url, config.id)
       if (icsData) {
         const events = parseICSData(icsData, key)
-        console.log(`Parsed ${events.length} events from ${config.name}`)
         allEvents.push(...events)
       } else {
         console.warn(`No data received for ${config.name}`)
@@ -124,7 +124,6 @@ export async function fetchAllCalendars() {
   }
   
   const sortedEvents = allEvents.sort((a, b) => new Date(a.start) - new Date(b.start))
-  console.log(`Total events loaded: ${sortedEvents.length}`)
   return sortedEvents
 }
 

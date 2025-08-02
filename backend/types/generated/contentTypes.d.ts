@@ -443,12 +443,12 @@ export interface ApiBoardBoard extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCalendarCalendar extends Struct.CollectionTypeSchema {
-  collectionName: 'calendars';
+export interface ApiCalendarProxyCalendarProxy extends Struct.SingleTypeSchema {
+  collectionName: 'calendar_proxies';
   info: {
-    displayName: 'Calendar';
-    pluralName: 'calendars';
-    singularName: 'calendar';
+    displayName: 'Calendar Proxy';
+    pluralName: 'calendar-proxies';
+    singularName: 'calendar-proxy';
   };
   options: {
     draftAndPublish: false;
@@ -460,7 +460,7 @@ export interface ApiCalendarCalendar extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::calendar.calendar'
+      'api::calendar-proxy.calendar-proxy'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1173,7 +1173,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::board.board': ApiBoardBoard;
-      'api::calendar.calendar': ApiCalendarCalendar;
+      'api::calendar-proxy.calendar-proxy': ApiCalendarProxyCalendarProxy;
       'api::competition.competition': ApiCompetitionCompetition;
       'api::home.home': ApiHomeHome;
       'api::resource.resource': ApiResourceResource;
