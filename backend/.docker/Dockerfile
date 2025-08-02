@@ -25,7 +25,6 @@ COPY --from=build /opt/app ./
 ENV PATH=/opt/node_modules/.bin:$PATH
 
 RUN chown -R node:node /opt/app
-USER node
 EXPOSE 3000
 
 CMD ["sh", "-c", "npm run crack && npm run start"]
