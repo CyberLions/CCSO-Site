@@ -52,7 +52,7 @@ jobs:
           registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_CMS }}
           registry.psuccso.org/ccso-site/${{ env.TAG_COMMIT_CMS }}
         cache-from: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_CMS }}
-        cache-to: type=inline
+        cache-to: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_CMS }},mode=max
 
   build-website:
     runs-on: ubuntu-latest
@@ -100,8 +100,8 @@ jobs:
         tags: |
           registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_WEBSITE }}
           registry.psuccso.org/ccso-site/${{ env.TAG_COMMIT_WEBSITE }}
-        cache-from: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_WEBSITE }}
-        cache-to: type=inline
+        cache-from: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_CMS }}
+        cache-to: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_CMS }},mode=max
 
   deploy-rancher:
     needs: [build-cms, build-website]
