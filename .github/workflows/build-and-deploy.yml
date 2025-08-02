@@ -100,8 +100,8 @@ jobs:
         tags: |
           registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_WEBSITE }}
           registry.psuccso.org/ccso-site/${{ env.TAG_COMMIT_WEBSITE }}
-        cache-from: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_CMS }}
-        cache-to: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_CMS }},mode=max
+        cache-from: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_WEBSITE }}
+        cache-to: type=registry,ref=registry.psuccso.org/ccso-site/${{ env.TAG_LATEST_WEBSITE }},mode=max
 
   deploy-rancher:
     needs: [build-cms, build-website]
