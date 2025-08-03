@@ -1,34 +1,32 @@
-# Build stage
-FROM node:22-alpine as builder
+# Creating multi-stage build for production
+FROM node:22-alpine AS build
+RUN apk update && apk add --no-cache openssl build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy source code
+WORKDIR /opt/
+COPY package.json yarn.lock ./
+RUN yarn global add node-gyp
+RUN yarn config set network-timeout 600000 -g && yarn install --production
+RUN npx @yek-plus/strapi-crack
+ENV PATH=/opt/node_modules/.bin:$PATH
+WORKDIR /opt/app
 COPY . .
+RUN yarn build
 
-# Production stage
+# Creating final production image
 FROM node:22-alpine
-
-WORKDIR /app
-
-# Copy package files and install production dependencies
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Copy built files from builder
-COPY --from=builder /app/* ./
-
-# Set environment variables
+RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+WORKDIR /opt/
+COPY --from=build /opt/node_modules ./node_modules
+COPY --from=build /opt/license.txt ./
+WORKDIR /opt/app
+COPY --from=build /opt/app ./
+ENV PATH=/opt/node_modules/.bin:$PATH
 
-# Expose API port
-EXPOSE 80
+RUN chown -R node:node /opt/app
+EXPOSE 3000
 
-# Start the application
-CMD ["node", "index.js"]
+CMD ["yarn", "start"]

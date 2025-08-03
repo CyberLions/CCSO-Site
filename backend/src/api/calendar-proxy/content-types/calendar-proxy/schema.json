@@ -1,0 +1,13 @@
+{
+  "kind": "singleType",
+  "collectionName": "calendar_proxies",
+  "info": {
+    "singularName": "calendar-proxy",
+    "pluralName": "calendar-proxies",
+    "displayName": "Calendar Proxy"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {}
+} 

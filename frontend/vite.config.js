@@ -22,7 +22,7 @@ export default defineConfig({
   server: {
     port: 8080,
     host: '0.0.0.0',
-    allowedHosts: ['tagaby.com','staging.tagaby.com'],
+    allowedHosts: ['psuccso.org','staging.psuccso.org'],
     headers: {
       'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
       'Access-Control-Allow-Origin': '*',  
@@ -33,6 +33,14 @@ export default defineConfig({
       usePolling: true,
       interval: 1000,
       followSymlinks: false
+    },
+    // Proxy API requests to Strapi backend
+    proxy: {
+      '/api': {
+        target: 'http://localhost:1337',
+        changeOrigin: true,
+        secure: false,
+      }
     }
   }
 })

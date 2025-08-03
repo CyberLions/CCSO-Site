@@ -2,7 +2,7 @@
 import qs from 'qs'
 
 // Strapi API Configuration
-const STRAPI_API_TOKEN = '717f8b2728419ae0b319f6cb0f8b26bf501129e28ad9b106403a3481f3c227a4c4d13479647e1f590a530fda17917717db8ec0ad240661a8039eec9658f3dadc41f6d803741c35d9393f552990b57c22a9ae27b88d3f9cc67cb1c66fc27708adfba3802ed6615566b10afaf2fda09752139b36eda7a0280b3de132868e6b9562'
+const STRAPI_API_TOKEN = window.ENV?.VITE_STRAPI_API_TOKEN
 
 // Simple in-memory cache for faster content loading
 const cache = new Map()
