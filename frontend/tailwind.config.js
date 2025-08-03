@@ -29,7 +29,7 @@ module.exports = {
         info: '#0096C7',
       },
       fontFamily: {
-        heading: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Orbitron', 'system-ui', 'sans-serif'],
         body: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
