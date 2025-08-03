@@ -3,9 +3,7 @@
     <!-- Hero Section -->
     <section class="text-white py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">
-          &lt;Sponsor Us/&gt;
-        </h1>
+        <h2 class="section-title">&lt;Sponsor Us/&gt;</h2>
         <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
           Partner with us to support the next generation of cybersecurity professionals
         </p>
@@ -224,7 +222,7 @@
         <div class="bg-white/5 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
           <h3 class="text-xl font-semibold text-white mb-4">Sponsorship Package</h3>
           <a 
-            href="/sponsorship-package.pdf" 
+            href="https://cms.psuccso.org/uploads/CCSO_Sponsorship_Packet_2025_2026_d170bfd40e.pdf" 
             download
             class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
           >
