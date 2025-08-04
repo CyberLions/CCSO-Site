@@ -126,14 +126,23 @@
           Copyright © CCSO {{ new Date().getFullYear() }} - All rights reserved
         </p>
         <p class="text-gray-400 text-sm mt-2 md:mt-0">
-          Concept by UXPA | Designed & Developed by 
+          Designed & Developed by 
+          <a 
+            href="https://www.linkedin.com/in/isabella-masso/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-blue-400 hover:text-blue-300 transition-colors"
+          >
+            Isabella Masso
+          </a>
+          and
           <a 
             href="https://www.linkedin.com/in/aiden-johnson-cs/" 
             target="_blank" 
             rel="noopener noreferrer"
             class="text-blue-400 hover:text-blue-300 transition-colors"
           >
-            Aiden Johnson
+            Aiden Johnson 
           </a>
         </p>
       </div>
