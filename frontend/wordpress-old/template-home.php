@@ -16,7 +16,7 @@ get_header();
       <div class="row top-about">
         <h2 class="section-title">&lt;Competitive Cyber Security Organization/&gt;</h2>
         <div class="col-md-6 col-lg-6 col-xs-12">
-          <p>CCSO members gain hands-on experience in offense, defense, physical security, and computer science. Meetings feature interactive challenges like internal competitions, lockpicking workshops, and resume-building events. Members also represent Penn State in national competitions, consistently placing in the top 4 at events such as CyberForce, CPTC, and MACCDC.</p>
+          <p>CCSO members gain hands-on experience in offense, defense, physical security, and computer science. Meetings feature interactive challenges like internal competitions, lockpicking workshops, and resume-building events. Members also represent Penn State nationally and globally, consistently earning podium placements at major competitions including CyberForce, CPTC, and CCDC</p>
 
           <a href="https://discord.gg/NhN5RpBXkm" target="_blank" class="btn discord-btn"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons8-discord.svg" alt="Discord Icon" /> Join Our Discord</a>
         </div>
