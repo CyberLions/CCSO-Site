@@ -34,7 +34,8 @@
       "enum": [
         "gold",
         "silver",
-        "bronze"
+        "bronze",
+        "resource"
       ]
     }
   }

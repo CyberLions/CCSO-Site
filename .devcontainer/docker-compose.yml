@@ -3,10 +3,10 @@ version: '3.8'
 services:
   frontend:
     build: 
-      context: \\wsl.localhost\Ubuntu-22.04\home\tgm\CCSO\Workspaces\ccso-website\frontend
+      context: \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\frontend
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - \\wsl.localhost\Ubuntu-22.04\home\tgm\CCSO\Workspaces\ccso-website\frontend:/app
+      - \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\frontend:/app
     networks:
       - app-network
     ports:
@@ -20,10 +20,10 @@ services:
 
   backend:
     build:
-      context: \\wsl.localhost\Ubuntu-22.04\home\tgm\CCSO\Workspaces\ccso-website\backend
+      context: \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\backend
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - \\wsl.localhost\Ubuntu-22.04\home\tgm\CCSO\Workspaces\ccso-website\backend:/app
+      - \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\backend:/app
     networks:
       - app-network
     ports:

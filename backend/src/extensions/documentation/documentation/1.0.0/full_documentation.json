@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-08-02T22:45:27.655Z"
+    "x-generation-date": "2025-08-26T15:47:09.568Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -7431,7 +7431,8 @@
                 "enum": [
                   "gold",
                   "silver",
-                  "bronze"
+                  "bronze",
+                  "resource"
                 ]
               },
               "locale": {
@@ -8113,7 +8114,8 @@
             "enum": [
               "gold",
               "silver",
-              "bronze"
+              "bronze",
+              "resource"
             ]
           },
           "createdAt": {
@@ -8304,7 +8306,8 @@
                   "enum": [
                     "gold",
                     "silver",
-                    "bronze"
+                    "bronze",
+                    "resource"
                   ]
                 },
                 "createdAt": {

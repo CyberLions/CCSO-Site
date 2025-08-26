@@ -547,7 +547,9 @@ export interface ApiSponsorSponsor extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    tier: Schema.Attribute.Enumeration<['gold', 'silver', 'bronze']> &
+    tier: Schema.Attribute.Enumeration<
+      ['gold', 'silver', 'bronze', 'resource']
+    > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'bronze'>;
     updatedAt: Schema.Attribute.DateTime;

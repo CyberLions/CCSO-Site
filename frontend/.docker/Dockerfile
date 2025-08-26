@@ -1,5 +1,5 @@
 # Build stage
-FROM node:23-alpine as builder
+FROM node:23-alpine AS builder
 
 WORKDIR /app
 
@@ -13,37 +13,20 @@ RUN npm ci
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN npm run generate
 
 # Production stage
 FROM nginx:alpine
 
-# Install envsubst
-RUN apk add --no-cache bash gettext
-
 # Copy nginx configuration
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy built files from builder
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy the env.js template
-COPY .docker/env.js.template /usr/share/nginx/html/env.js.template
-
-# Copy entrypoint script and ensure proper line endings
-COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh && \
-    sed -i 's/\r$//' /docker-entrypoint.sh && \
-    cat /docker-entrypoint.sh
-
-# Environment variables with defaults
-ENV VITE_API_URL="http://localhost:6011"
-ENV VITE_APP_TITLE="CCSO Website"
-ENV VITE_FRONTEND_URL="http://localhost"
+# Copy built files from the builder stage
+# The output is in the .output directory for Nuxt 3
+COPY --from=builder /app/.output/public /usr/share/nginx/html
 
 # Expose web port
 EXPOSE 80
 
-# Use custom entrypoint script
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

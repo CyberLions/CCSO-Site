@@ -2,19 +2,20 @@
   "name": "ccso-website",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/",
-    "prettify": "prettier --write \"src/**/*.{js,vue,css,json,jsx,ts,tsx,md}\"",
-    "prettify:check": "prettier --check \"src/**/*.{js,vue,css,json,jsx,ts,tsx,md}\"",
-    "prettify:src": "./prettify-src.sh"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint . --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.16",
     "@heroicons/vue": "^2.0.18",
+    "@nuxt/image": "^1.11.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vueuse/integrations": "^13.4.0",
     "axios": "^1.5.0",
@@ -24,29 +25,19 @@
     "ical.js": "^2.2.0",
     "leaflet": "^1.9.4",
     "markdown-it": "^14.1.0",
-    "pinia": "^2.1.6",
+    "nuxt": "^3.12.0",
     "qs": "^6.14.0",
     "sortablejs": "^1.15.6",
-    "vite-svg-loader": "^5.1.0",
-    "vue": "^3.3.4",
-    "vue-chartjs": "^5.3.0",
-    "vue-router": "^4.2.4",
-    "vue-strapi-blocks-renderer": "^0.2.2",
-    "vue3-autocounter": "^1.0.8"
+    "vite-svg-loader": "^5.1.0"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.3.3",
-    "@tailwindcss/forms": "^0.5.6",
-    "@vitejs/plugin-vue": "^4.3.4",
-    "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "@vue/eslint-config-prettier": "^8.0.0",
-    "autoprefixer": "^10.4.15",
-    "eslint": "^8.49.0",
-    "eslint-plugin-vue": "^9.17.0",
-    "postcss": "^8.4.29",
-    "prettier": "^3.0.3",
-    "tailwindcss": "^3.3.3",
-    "vite": "^4.4.9",
-    "vite-plugin-vue-devtools": "^7.7.6"
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "@types/node": "^22.15.32",
+    "eslint": "^9.29.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-vue": "^9.4.0",
+    "prettier": "3.5.3",
+    "typescript": "~5.8.0"
   }
 }
