@@ -20,6 +20,7 @@ FROM nginx:alpine
 
 # Copy nginx configuration
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
 
 # Copy built files from the builder stage
 # The output is in the .output directory for Nuxt 3
