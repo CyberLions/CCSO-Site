@@ -21,11 +21,14 @@ FROM nginx:alpine
 # Copy nginx configuration
 COPY .docker/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy entrypoint script
-COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
+# Copy the env.js template
+COPY .docker/env.js.template /usr/share/nginx/html/env.js.template
 
-# Make the script executable
-RUN chmod +x /docker-entrypoint.sh
+# Copy entrypoint script and ensure proper line endings
+COPY .docker/docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh && \
+    sed -i 's/\r$//' /docker-entrypoint.sh && \
+    cat /docker-entrypoint.sh
 
 # Copy built files from the builder stage
 # The output is in the .output directory for Nuxt 3
