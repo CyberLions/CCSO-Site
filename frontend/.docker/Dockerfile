@@ -28,5 +28,6 @@ COPY --from=builder /app/.output/public /usr/share/nginx/html
 # Expose web port
 EXPOSE 80
 
-# Start Nginx
+# Use custom entrypoint script
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
