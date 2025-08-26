@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'The purpose of the Penn State Competitive Cyber Security Organization is to provide members with an academic outlet to pursue and refine their cyber defense and security skills, collaborate with members of other technology-related clubs, expand their technical acumen, and provide the opportunity to apply such acumen in competitive environments through participation in various cyber security competitions.' }
+        { name: 'description', content: 'CCSO members gain hands-on experience in offense, defense, physical security, and computer science. Meetings feature interactive challenges like internal competitions, lockpicking workshops, and resume-building events. Members also represent Penn State in national competitions, consistently placing in the top 4 at events such as CyberForce, CPTC, and MACCDC.' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
