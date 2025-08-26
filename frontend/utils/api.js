@@ -1,21 +1,33 @@
 // src/utils/api.js
 import qs from 'qs'
+
 // Prefer Nuxt runtime config when available
-let useRuntimeConfigSafely
-try {
-  // This import only works in Nuxt runtime; guarded to avoid build-time issues
-  // eslint-disable-next-line no-undef
-  const mod = await import('#app')
-  useRuntimeConfigSafely = mod.useRuntimeConfig
-} catch (_) {
-  useRuntimeConfigSafely = undefined
+let useRuntimeConfigSafely = undefined
+
+// Function to initialize runtime config safely
+async function initializeRuntimeConfig() {
+  if (useRuntimeConfigSafely !== undefined) {
+    return useRuntimeConfigSafely
+  }
+  
+  try {
+    // This import only works in Nuxt runtime; guarded to avoid build-time issues
+    // eslint-disable-next-line no-undef
+    const mod = await import('#app')
+    useRuntimeConfigSafely = mod.useRuntimeConfig
+    return useRuntimeConfigSafely
+  } catch (_) {
+    useRuntimeConfigSafely = null
+    return null
+  }
 }
 
-function getStrapiToken() {
+async function getStrapiToken() {
   // Try Nuxt runtime config (server or client)
   try {
-    if (typeof useRuntimeConfigSafely === 'function') {
-      const cfg = useRuntimeConfigSafely()
+    const runtimeConfig = await initializeRuntimeConfig()
+    if (typeof runtimeConfig === 'function') {
+      const cfg = runtimeConfig()
       if (cfg?.public?.NUXT_STRAPI_API_TOKEN) return cfg.public.NUXT_STRAPI_API_TOKEN
       if (cfg?.public?.strapiApiToken) return cfg.public.strapiApiToken
     }
@@ -35,8 +47,9 @@ const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
 export function getApiUrl() {
   // Nuxt runtime config first
   try {
-    if (typeof useRuntimeConfigSafely === 'function') {
-      const cfg = useRuntimeConfigSafely()
+    const runtimeConfig = initializeRuntimeConfig()
+    if (typeof runtimeConfig === 'function') {
+      const cfg = runtimeConfig()
       if (cfg?.public?.apiBase) return cfg.public.apiBase
       if (cfg?.public?.NUXT_API_URL) return cfg.public.NUXT_API_URL
     }
@@ -102,7 +115,7 @@ export async function strapiRequest(endpoint, options = {}) {
   const defaultHeaders = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
-    Authorization: `Bearer ${getStrapiToken()}`,
+    Authorization: `Bearer ${await getStrapiToken()}`,
   }
   
   const config = {
