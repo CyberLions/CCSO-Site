@@ -4,7 +4,7 @@
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 class="section-title">&lt;Discord/&gt;</h2>
         <div class="row discord-cont">
-          <a href="https://discord.gg/NhN5RpBXkm/" target="_blank" class="btn discord-btn">
+          <a href="https://discord.gg/NhN5RpBXkm" target="_blank" class="btn discord-btn">
             <DiscordIcon :size="100" class="discord-svg" />
           </a>
           <p>Discord is a popular communication platform designed for creating communities, offering text, voice, and video chat. The Competitive Cyber Security Organization (CCSO) uses Discord as its primary tool for all communication, allowing members to collaborate, share information, and stay connected effectively in real-time.</p>
