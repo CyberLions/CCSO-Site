@@ -15,7 +15,7 @@ export default defineNuxtConfig({
         { name: 'description', content: 'The purpose of the Penn State Competitive Cyber Security Organization is to provide members with an academic outlet to pursue and refine their cyber defense and security skills, collaborate with members of other technology-related clubs, expand their technical acumen, and provide the opportunity to apply such acumen in competitive environments through participation in various cyber security competitions.' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+        { rel: 'icon', type: 'image/x-icon', href: '/icon.png' }
       ],
       script: [
         { src: '/env.js', defer: false }
