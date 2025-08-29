@@ -28,8 +28,8 @@ export const CALENDAR_CONFIG = {
     id: 'cFLaji4Gx8YXb6R6',
     url: 'https://nextcloud.psuccso.org/remote.php/dav/public-calendars/cFLaji4Gx8YXb6R6?export',
     name: 'CTFs',
-    color: '#8B5CF6', // Purple
-    bgColor: '#EDE9FE'
+    color: '#D3A967', // Yellow
+    bgColor: '#d3a96729'
   }
 }
 
