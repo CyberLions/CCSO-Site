@@ -13,6 +13,7 @@ import {
   fetchSponsor,
   fetchHome,
   fetchWhatWeDo,
+  fetchLockpickingLeaderboards,
   getStrapiMediaUrl,
   clearCache,
   getCacheSize
@@ -279,5 +280,81 @@ export function useWhatWeDo() {
     loading,
     error,
     loadWhatWeDo
+  }
+}
+
+export function useLockpickingLeaderboards() {
+  const { loading, error } = useStrapi()
+  const entries = ref([])
+
+  const loadLeaderboards = async (params = {}) => {
+    const data = await fetchLockpickingLeaderboards(params)
+    // Strapi v4 collection response -> { data: [ { id, attributes: {...} } ] }
+    // Our fetch returns the full response already, so unwrap here
+    entries.value = (data?.data || data || []).map(item => {
+      const attributes = item.attributes || item
+      return {
+        id: item.id || attributes.id,
+        name: attributes.name,
+        email: attributes.email,
+        category: attributes.category,
+        time: attributes.time,
+        lock_number: attributes.lock_number || null,
+        createdAt: attributes.createdAt
+      }
+    })
+    return entries.value
+  }
+
+  const categories = [
+    'handcuffs',
+    'handcuffs_back',
+    'handcuffs_double_locked',
+    'pin_3',
+    'pin_4',
+    'pin_5'
+  ]
+
+  const groupedByCategory = computed(() => {
+    const groups = {}
+    for (const category of categories) groups[category] = []
+    for (const e of entries.value) {
+      if (!groups[e.category]) groups[e.category] = []
+      groups[e.category].push(e)
+    }
+    // Sort each category ascending by time (seconds)
+    for (const key of Object.keys(groups)) {
+      groups[key] = groups[key]
+        .slice()
+        .sort((a, b) => (a.time ?? Infinity) - (b.time ?? Infinity))
+    }
+    return groups
+  })
+
+  const formatTime = (seconds) => {
+    if (seconds == null || isNaN(seconds)) return '—'
+    const s = Math.floor(seconds % 60)
+    const m = Math.floor((seconds / 60) % 60)
+    const h = Math.floor(seconds / 3600)
+    const two = (n) => String(n).padStart(2, '0')
+    if (h > 0) return `${h}:${two(m)}:${two(s)}`
+    return `${m}:${two(s)}`
+  }
+
+  const getRank = (category, time) => {
+    const list = groupedByCategory.value[category] || []
+    const idx = list.findIndex(e => e.time === time)
+    return idx === -1 ? null : idx + 1
+  }
+
+  return {
+    entries: computed(() => entries.value),
+    loading,
+    error,
+    loadLeaderboards,
+    groupedByCategory,
+    categories,
+    formatTime,
+    getRank
   }
 }

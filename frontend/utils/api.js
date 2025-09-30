@@ -359,3 +359,14 @@ export async function resendVerification(email) {
   if (!res.ok) throw new Error('Failed to resend verification')
   return res.json()
 }
+
+// Lockpicking Leaderboard
+export async function fetchLockpickingLeaderboards(params = {}) {
+  const query = buildQuery({
+    populate: '*',
+    sort: 'time:asc',
+    ...params
+  })
+  const { data } = await strapiRequest(`/lockpicking-leaderboards?${query}`)
+  return data
+}

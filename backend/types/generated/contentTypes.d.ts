@@ -487,6 +487,49 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLockpickingLeaderboardLockpickingLeaderboard
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'lockpicking_leaderboards';
+  info: {
+    displayName: 'Lockpicking Leaderboard';
+    pluralName: 'lockpicking-leaderboards';
+    singularName: 'lockpicking-leaderboard';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Enumeration<
+      [
+        'handcuffs',
+        'handcuffs_back',
+        'handcuffs_double_locked',
+        'pin_3',
+        'pin_4',
+        'pin_5',
+      ]
+    > &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::lockpicking-leaderboard.lockpicking-leaderboard'
+    > &
+      Schema.Attribute.Private;
+    lock_number: Schema.Attribute.String;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    time: Schema.Attribute.Integer & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiResourceResource extends Struct.CollectionTypeSchema {
   collectionName: 'resources';
   info: {
@@ -1100,6 +1143,7 @@ declare module '@strapi/strapi' {
       'api::calendar-proxy.calendar-proxy': ApiCalendarProxyCalendarProxy;
       'api::competition.competition': ApiCompetitionCompetition;
       'api::home.home': ApiHomeHome;
+      'api::lockpicking-leaderboard.lockpicking-leaderboard': ApiLockpickingLeaderboardLockpickingLeaderboard;
       'api::resource.resource': ApiResourceResource;
       'api::sponsor.sponsor': ApiSponsorSponsor;
       'api::what-we-do.what-we-do': ApiWhatWeDoWhatWeDo;
