@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lockpicking_leaderboards",
+  "info": {
+    "singularName": "lockpicking-leaderboard",
+    "pluralName": "lockpicking-leaderboards",
+    "displayName": "Lockpicking Leaderboard"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "time": {
+      "type": "integer",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "handcuffs",
+        "handcuffs_back",
+        "handcuffs_double_locked",
+        "pin_3",
+        "pin_4",
+        "pin_5"
+      ]
+    },
+    "lock_number": {
+      "type": "string"
+    }
+  }
+}
