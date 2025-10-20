@@ -65,11 +65,6 @@
                 CPTC Guide
               </NuxtLink>
             </li>
-            <li>
-              <NuxtLink to="/events/mixer" class="text-gray-300 hover:text-blue-400 transition-colors duration-200">
-                Networking Mixer
-              </NuxtLink>
-            </li>
           </ul>
         </div>
 

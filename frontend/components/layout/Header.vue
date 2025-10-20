@@ -101,7 +101,7 @@ export default {
       { name: 'About', path: '/about' },
       { name: 'Get Involved', path: '/get-involved' },
       { name: 'Competitions', path: '/competitions' },
-      { name: 'Mixer', path: '/events/mixer' },
+      { name: 'Resources', path: '/resources' },
       { name: 'Sponsors', path: '/sponsors' }
     ]
 
