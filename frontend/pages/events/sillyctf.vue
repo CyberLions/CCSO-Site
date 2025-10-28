@@ -176,6 +176,10 @@ const formattedEventDate = new Intl.DateTimeFormat(undefined, {
   animation: fadeInUp 0.8s ease-out;
 }
 
+.timer-unit:focus-within, .timer-unit:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
 .timer-value {
   font-size: 3rem;
   font-weight: 700;
@@ -261,13 +265,19 @@ const formattedEventDate = new Intl.DateTimeFormat(undefined, {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .timer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(90px, 1fr));
+    gap: 0.75rem;
+  }
+
   .timer-unit {
-    padding: 1.5rem 1rem;
-    min-width: 100px;
+    padding: 1rem 0.75rem;
+    min-width: 0;
   }
 
   .timer-value {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .timer-label {
@@ -275,7 +285,7 @@ const formattedEventDate = new Intl.DateTimeFormat(undefined, {
   }
 
   .timer-separator {
-    font-size: 1.5rem;
+    display: none;
   }
 
   .message {
@@ -288,13 +298,17 @@ const formattedEventDate = new Intl.DateTimeFormat(undefined, {
 }
 
 @media (max-width: 480px) {
+  .timer-grid {
+    grid-template-columns: repeat(2, minmax(80px, 1fr));
+    gap: 0.5rem;
+  }
+
   .timer-unit {
-    padding: 1rem 0.75rem;
-    min-width: 70px;
+    padding: 0.75rem 0.5rem;
   }
 
   .timer-value {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .timer-label {
@@ -302,7 +316,7 @@ const formattedEventDate = new Intl.DateTimeFormat(undefined, {
   }
 
   .timer-separator {
-    font-size: 1.2rem;
+    display: none;
   }
 
   .logo {
