@@ -53,7 +53,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 // Fixed Eastern Time target: March 21, 2026 10:00 AM ET (EDT)
 // Using explicit UTC offset for correctness across viewer locales
-const eventDate = new Date('2026-03-21T10:00:00-04:00')
+const eventDate = new Date('2026-04-04T10:00:00-04:00')
 
 const timeLeft = ref({
   days: 0,
