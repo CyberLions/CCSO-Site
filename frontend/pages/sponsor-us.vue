@@ -183,7 +183,7 @@
           <div class="bg-gray-800 border-2 border-purple-300 rounded-lg shadow-lg overflow-hidden">
             <div class="bg-purple-600 text-white px-6 py-4">
               <h3 class="text-2xl font-bold">Platinum Sponsor</h3>
-              <p class="text-purple-100">$5,000+</p>
+              <p class="text-purple-100">$3,000+</p>
             </div>
             <div class="p-6">
               <ul class="space-y-3 text-sm">
@@ -222,7 +222,7 @@
         <div class="bg-white/5 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
           <h3 class="text-xl font-semibold text-white mb-4">Sponsorship Package</h3>
           <a 
-            href="https://cms.psuccso.org/uploads/CCSO_Sponsorship_Packet_2025_2026_d170bfd40e.pdf" 
+            href="https://cms.psuccso.org/uploads/CCSO_Sponsorship_Oppurtunities_Package_2025_2026_4a6c4f4786.pdf" 
             download
             class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
           >
