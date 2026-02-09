@@ -62,42 +62,79 @@ async function fetchICSData(url, calendarId) {
   }
 }
 
-// Parse ICS data and convert to JSON
+// Expansion range for recurring events: 1 year in the past to 2 years in the future
+function getExpansionRange() {
+  const now = new Date()
+  const rangeStart = new Date(now)
+  rangeStart.setFullYear(rangeStart.getFullYear() - 1)
+  const rangeEnd = new Date(now)
+  rangeEnd.setFullYear(rangeEnd.getFullYear() + 2)
+  return { rangeStart, rangeEnd }
+}
+
+// Convert one ICAL occurrence into our event shape
+function occurrenceToEvent(event, details, calendarKey, occurrenceId) {
+  const start = details.startDate.toJSDate()
+  const end = details.endDate.toJSDate()
+  return {
+    id: occurrenceId,
+    title: event.summary || 'Untitled Event',
+    description: event.description || '',
+    start,
+    end,
+    location: event.location || '',
+    calendar: calendarKey,
+    calendarName: CALENDAR_CONFIG[calendarKey].name,
+    color: CALENDAR_CONFIG[calendarKey].color,
+    bgColor: CALENDAR_CONFIG[calendarKey].bgColor
+  }
+}
+
+// Expand a single vevent (recurring or not) into an array of event objects
+function expandVEvent(vevent, calendarKey) {
+  try {
+    const event = new ICAL.Event(vevent)
+    const uid = event.uid || `${calendarKey}-${Date.now()}-${Math.random()}`
+    const { rangeStart, rangeEnd } = getExpansionRange()
+
+    if (event.isRecurring()) {
+      const occurrences = []
+      const iter = event.iterator()
+      let next
+      while ((next = iter.next())) {
+        const occDate = next.toJSDate()
+        if (occDate > rangeEnd) break
+        if (occDate < rangeStart) continue
+        const details = event.getOccurrenceDetails(next)
+        const occurrenceId = `${uid}-${next.toString()}`
+        occurrences.push(occurrenceToEvent(event, details, calendarKey, occurrenceId))
+      }
+      return occurrences
+    }
+
+    const start = event.startDate.toJSDate()
+    const end = event.endDate.toJSDate()
+    if (start > rangeEnd || end < rangeStart) return []
+    return [occurrenceToEvent(event, { startDate: event.startDate, endDate: event.endDate }, calendarKey, uid)]
+  } catch (eventError) {
+    console.warn('Failed to parse individual event:', eventError)
+    return []
+  }
+}
+
+// Parse ICS data and convert to JSON (expanding recurring events into occurrences)
 function parseICSData(icsData, calendarKey) {
   try {
     if (!icsData || icsData.trim() === '') {
       console.warn(`Empty ICS data for ${calendarKey}`)
       return []
     }
-    
+
     const jcalData = ICAL.parse(icsData)
     const comp = new ICAL.Component(jcalData)
     const vevents = comp.getAllSubcomponents('vevent')
-    
-    const events = vevents.map(vevent => {
-      try {
-        const event = new ICAL.Event(vevent)
-        const start = event.startDate.toJSDate()
-        const end = event.endDate.toJSDate()
-        
-        return {
-          id: event.uid || `${calendarKey}-${Date.now()}-${Math.random()}`,
-          title: event.summary || 'Untitled Event',
-          description: event.description || '',
-          start: start,
-          end: end,
-          location: event.location || '',
-          calendar: calendarKey,
-          calendarName: CALENDAR_CONFIG[calendarKey].name,
-          color: CALENDAR_CONFIG[calendarKey].color,
-          bgColor: CALENDAR_CONFIG[calendarKey].bgColor
-        }
-      } catch (eventError) {
-        console.warn('Failed to parse individual event:', eventError)
-        return null
-      }
-    }).filter(event => event !== null)
-    
+
+    const events = vevents.flatMap(vevent => expandVEvent(vevent, calendarKey))
     return events
   } catch (error) {
     console.error('Error parsing ICS data for', calendarKey, ':', error)
