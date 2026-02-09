@@ -102,7 +102,8 @@ export default {
       { name: 'Get Involved', path: '/get-involved' },
       { name: 'Competitions', path: '/competitions' },
       { name: 'Resources', path: '/resources' },
-      { name: 'Sponsors', path: '/sponsors' }
+      { name: 'Sponsors', path: '/sponsors' },
+      { name: 'Join', path: '/join' }
     ]
 
     let scrollTimeout = null
