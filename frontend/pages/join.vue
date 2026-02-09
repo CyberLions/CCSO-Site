@@ -12,6 +12,14 @@
               and community engagement. Whether you're a beginner curious about security or an 
               experienced practitioner looking to sharpen your skills, CCSO has a place for you.
             </p>
+            <a
+              href="https://join.psuccso.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="become-member-btn inline-flex items-center justify-center mt-6 px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200"
+            >
+              Become a member
+            </a>
           </div>
         </div>
       </div>
@@ -152,6 +160,20 @@ const positions = ref([
   font-size: 1.2em;
   line-height: 1.7;
   margin-bottom: 2rem;
+}
+
+.become-member-btn {
+  background: linear-gradient(135deg, #00458d, #003566);
+  color: #ffffff;
+  border: 2px solid rgba(255, 195, 0, 0.5);
+  text-decoration: none;
+}
+.become-member-btn:hover {
+  background: linear-gradient(135deg, #ffc300, #e6b000);
+  color: #00053e;
+  border-color: #ffc300;
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(255, 195, 0, 0.3);
 }
 
 .hero-highlights {

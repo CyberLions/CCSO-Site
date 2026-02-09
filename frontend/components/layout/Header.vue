@@ -24,8 +24,8 @@
           </NuxtLink>
         </div>
 
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-8">
+        <!-- Desktop Navigation (hidden below 1200px) -->
+        <nav class="hidden min-[1200px]:flex items-center space-x-8">
           <NuxtLink 
             v-for="item in navigationItems" 
             :key="item.name"
@@ -39,10 +39,17 @@
               class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 rounded-full"
             ></span>
           </NuxtLink>
+          <NuxtLink
+            to="/join"
+            class="join-btn ml-2 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
+            :class="$route.path === '/join' ? 'join-btn-active' : ''"
+          >
+            Join
+          </NuxtLink>
         </nav>
 
-        <!-- Mobile menu button -->
-        <div class="md:hidden">
+        <!-- Mobile menu button (visible below 1200px) -->
+        <div class="min-[1200px]:hidden">
           <button
             @click="isMobileMenuOpen = !isMobileMenuOpen"
             class="text-gray-300 hover:text-blue-400 p-2 rounded-md transition-colors duration-200"
@@ -60,10 +67,10 @@
       </div>
     </div>
 
-      <!-- Mobile Navigation -->
+      <!-- Mobile Navigation (visible below 1200px) -->
       <div 
         v-show="isMobileMenuOpen"
-        class="md:hidden border-t border-gray-700 bg-black/50 backdrop-blur-md"
+        class="min-[1200px]:hidden border-t border-gray-700 bg-black/50 backdrop-blur-md"
       >
         <div class="px-2 pt-2 pb-3 space-y-1">
           <NuxtLink
@@ -75,6 +82,14 @@
             :class="{ 'text-blue-400 bg-slate-800': $route.path === item.path }"
           >
             {{ item.name }}
+          </NuxtLink>
+          <NuxtLink
+            to="/join"
+            @click="isMobileMenuOpen = false"
+            class="join-btn-mobile block text-center mx-3 mt-2 px-4 py-3 rounded-lg text-base font-semibold transition-all duration-200"
+            :class="$route.path === '/join' ? 'join-btn-active' : ''"
+          >
+            Join
           </NuxtLink>
         </div>
       </div>
@@ -102,8 +117,7 @@ export default {
       { name: 'Get Involved', path: '/get-involved' },
       { name: 'Competitions', path: '/competitions' },
       { name: 'Resources', path: '/resources' },
-      { name: 'Sponsors', path: '/sponsors' },
-      { name: 'Join', path: '/join' }
+      { name: 'Sponsors', path: '/sponsors' }
     ]
 
     let scrollTimeout = null
@@ -195,5 +209,38 @@ export default {
 .header * {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Join as button in header */
+.join-btn {
+  background: linear-gradient(135deg, #00458d, #003566);
+  color: #fff;
+  border: 2px solid rgba(255, 195, 0, 0.4);
+}
+.join-btn:hover {
+  background: linear-gradient(135deg, #ffc300, #e6b000);
+  color: #000814;
+  border-color: #ffc300;
+  box-shadow: 0 4px 14px rgba(255, 195, 0, 0.25);
+}
+.join-btn-active {
+  background: linear-gradient(135deg, #ffc300, #e6b000);
+  color: #000814;
+  border-color: #ffc300;
+}
+.join-btn-mobile {
+  background: linear-gradient(135deg, #00458d, #003566);
+  color: #fff;
+  border: 2px solid rgba(255, 195, 0, 0.4);
+}
+.join-btn-mobile:hover {
+  background: linear-gradient(135deg, #ffc300, #e6b000);
+  color: #000814;
+  border-color: #ffc300;
+}
+.join-btn-mobile.join-btn-active {
+  background: linear-gradient(135deg, #ffc300, #e6b000);
+  color: #000814;
+  border-color: #ffc300;
 }
 </style> 
