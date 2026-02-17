@@ -222,7 +222,7 @@
         <div class="bg-white/5 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
           <h3 class="text-xl font-semibold text-white mb-4">Sponsorship Package</h3>
           <a 
-            href="https://cms.psuccso.org/uploads/CCSO_Sponsorship_Opportunities_Package_2025_2026_4a6c4f4786.pdf" 
+            href="https://cms.psuccso.org/uploads/CCSO_Sponsorship_Opportunities_Package_2025_2026_827b739e06.pdf" 
             download
             class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
           >
