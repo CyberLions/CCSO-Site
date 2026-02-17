@@ -52,6 +52,7 @@ function toggleFlip() {
   width: 100%;
   height: 100%;
   transition: transform 0.5s cubic-bezier(.4,2,.6,1);
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   flex: 1 1 0%;
 }
@@ -62,7 +63,12 @@ function toggleFlip() {
   position: absolute;
   width: 100%;
   height: 100%;
+  /* Firefox requires transform-style on children for backface-visibility to work */
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,6 +86,8 @@ function toggleFlip() {
 }
 .flip-card-front {
   z-index: 2;
+  /* Firefox requires explicit transform on front face for backface-visibility to work */
+  transform: rotateY(0deg);
 }
 .flip-card-back {
   transform: rotateY(180deg);
