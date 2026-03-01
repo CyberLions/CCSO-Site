@@ -26,19 +26,29 @@
 
         <!-- Desktop Navigation (hidden below 1200px) -->
         <nav class="hidden min-[1200px]:flex items-center space-x-8">
-          <NuxtLink 
-            v-for="item in navigationItems" 
-            :key="item.name"
-            :to="item.path"
-            class="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 relative group"
-            :class="{ 'text-blue-400': $route.path === item.path }"
-          >
-            {{ item.name }}
-            <span 
-              v-if="$route.path === item.path"
-              class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 rounded-full"
-            ></span>
-          </NuxtLink>
+          <template v-for="item in navigationItems" :key="item.name">
+            <a
+              v-if="item.external"
+              :href="item.path"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 relative group"
+            >
+              {{ item.name }}
+            </a>
+            <NuxtLink
+              v-else
+              :to="item.path"
+              class="text-gray-300 hover:text-blue-400 px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 relative group"
+              :class="{ 'text-blue-400': $route.path === item.path }"
+            >
+              {{ item.name }}
+              <span 
+                v-if="$route.path === item.path"
+                class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 rounded-full"
+              ></span>
+            </NuxtLink>
+          </template>
           <NuxtLink
             to="/join"
             class="join-btn ml-2 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200"
@@ -73,16 +83,27 @@
         class="min-[1200px]:hidden border-t border-gray-700 bg-black/50 backdrop-blur-md"
       >
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <NuxtLink
-            v-for="item in navigationItems"
-            :key="item.name"
-            :to="item.path"
-            @click="isMobileMenuOpen = false"
-            class="text-gray-300 hover:text-blue-400 hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
-            :class="{ 'text-blue-400 bg-slate-800': $route.path === item.path }"
-          >
-            {{ item.name }}
-          </NuxtLink>
+          <template v-for="item in navigationItems" :key="item.name">
+            <a
+              v-if="item.external"
+              :href="item.path"
+              target="_blank"
+              rel="noopener noreferrer"
+              @click="isMobileMenuOpen = false"
+              class="text-gray-300 hover:text-blue-400 hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+            >
+              {{ item.name }}
+            </a>
+            <NuxtLink
+              v-else
+              :to="item.path"
+              @click="isMobileMenuOpen = false"
+              class="text-gray-300 hover:text-blue-400 hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              :class="{ 'text-blue-400 bg-slate-800': $route.path === item.path }"
+            >
+              {{ item.name }}
+            </NuxtLink>
+          </template>
           <NuxtLink
             to="/join"
             @click="isMobileMenuOpen = false"
@@ -117,7 +138,8 @@ export default {
       { name: 'Get Involved', path: '/get-involved' },
       { name: 'Competitions', path: '/competitions' },
       { name: 'Resources', path: '/resources' },
-      { name: 'Sponsors', path: '/sponsors' }
+      { name: 'Sponsors', path: '/sponsors' },
+      { name: 'Shop', path: 'https://shop.psuccso.org', external: true }
     ]
 
     let scrollTimeout = null
