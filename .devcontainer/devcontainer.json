@@ -1,18 +1,18 @@
 {
-  "name": "CCSO Website Dev Environment",
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+  "name": "CCSO Website",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "backend",
+  "service": "app",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
-  "remoteUser": "root",
-  "overrideCommand": true,
-  "forwardPorts": [6010, 6011, 6012],
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/workspace,type=bind",
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/root/.gitconfig,type=bind"
-  ],
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "bash"
+  "forwardPorts": [3000, 1337, 5432],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
   },
-  "postCreateCommand": "ls /workspace && npm install --prefix /workspace/backend && npm install --prefix /workspace/frontend"
+  "remoteUser": "node",
+  "postCreateCommand": "sudo chown -R node:node /workspace && npm install --prefix /workspace/backend && npm install --prefix /workspace/frontend"
 }

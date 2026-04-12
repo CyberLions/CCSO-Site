@@ -1,66 +1,34 @@
-version: '3.8'
-
 services:
-  frontend:
-    build: 
-      context: \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\frontend
-      dockerfile: .devcontainer/Dockerfile
+  app:
+    image: mcr.microsoft.com/devcontainers/javascript-node:22-bookworm
     volumes:
-      - \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\frontend:/app
-    networks:
-      - app-network
-    ports:
-      - "6010:8080"
-    environment:
-      - VITE_APP_TITLE=CCSO
-      - VITE_BACKEND_URL=http://localhost:6011
-      - CHOKIDAR_USEPOLLING=true
-      - CHOKIDAR_INTERVAL=1000
-      - WATCHPACK_POLLING=true
-
-  backend:
-    build:
-      context: \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\backend
-      dockerfile: .devcontainer/Dockerfile
-    volumes:
-      - \\wsl.localhost\Ubuntu-24.04\home\tgm\CCSO\Workspaces\ccso-website\backend:/app
-    networks:
-      - app-network
-    ports:
-      - "6011:3000"
-    depends_on:
-      - db
+      - ..:/workspace:cached
+    command: sleep infinity
     environment:
       - NODE_ENV=development
-      - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true
-      - CHOKIDAR_INTERVAL=1000
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=ccso
+      - DATABASE_USERNAME=ccso
+      - DATABASE_PASSWORD=ccso
+    depends_on:
+      db:
+        condition: service_healthy
 
   db:
-    image: postgres:17.5
-    networks:
-      - app-network
+    image: postgres:17
     environment:
       - POSTGRES_DB=ccso
       - POSTGRES_USER=ccso
       - POSTGRES_PASSWORD=ccso
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  pgadmin4:
-    image: dpage/pgadmin4
-    networks:
-      - app-network
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=ccso@ccso.com
-      - PGADMIN_DEFAULT_PASSWORD=ccso
-    ports:
-      - "6012:80"
-    depends_on:
-      - db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ccso -d ccso"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
-
-networks:
-  app-network:
