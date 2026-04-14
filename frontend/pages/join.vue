@@ -125,21 +125,21 @@ const positions = ref([
     title: 'Sponsorship Chair',
     description: 'Manage and coordinate sponsorship opportunities for CCSO. Reach out to potential sponsors, negotiate deals, and ensure sponsors are satisfied with their partnership.',
     icon: PresentationChartLineIcon,
-    formUrl: 'https://nextcloud.psuccso.org/apps/forms/s/fcSxKGQYpd8xEK3wtmMa8BwW'
+    formUrl: 'http://r.psuccso.org/be-a-chair'
   },
   {
     id: 'social-media-chair',
     title: 'Social Media Chair',
     description: 'Manage our social media presence across platforms. Create engaging content, grow our following, and help promote club events and achievements.',
     icon: MegaphoneIcon,
-    formUrl: 'https://nextcloud.psuccso.org/apps/forms/s/CnNsz3CcintxPirLzYGi96rR'
+    formUrl: 'http://r.psuccso.org/be-a-chair'
   },
   {
     id: 'tech-team',
     title: 'Tech Team',
     description: 'Help maintain and improve our infrastructure. No experience required, just a willingness to learn.',
     icon: RocketLaunchIcon,
-    formUrl: 'https://nextcloud.psuccso.org/apps/forms/s/8sE46Q2qfFbwZKKz3jCwBY3L'
+    formUrl: 'http://r.psuccso.org/be-a-chair'
   }
 ])
 </script>
