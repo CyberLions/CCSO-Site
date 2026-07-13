@@ -103,7 +103,7 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-white mb-4">CCSO SPONSORSHIP PACKAGE</h2>
-          <p class="text-xl text-gray-300">2025-26 ACADEMIC YEAR</p>
+          <p class="text-xl text-gray-300">2026-27 ACADEMIC YEAR</p>
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
@@ -222,7 +222,7 @@
         <div class="bg-white/5 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
           <h3 class="text-xl font-semibold text-white mb-4">Sponsorship Package</h3>
           <a 
-            href="https://cms.psuccso.org/uploads/CCSO_Sponsorship_Opportunities_Package_2025_2026_827b739e06.pdf" 
+            href="https://cms.psuccso.org/uploads/CCSO_SPONSORSHIP_OPPURTUNITIES_PACKAGE_2026_27_ACADEMIC_YEAR_6ffdf567af.pdf" 
             download
             class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
           >

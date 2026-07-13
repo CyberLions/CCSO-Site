@@ -66,6 +66,11 @@
             <p>We're currently looking for sponsors to support our mission.</p>
           </div>
         </div>
+
+        <!-- Sponsor CTA -->
+        <h3 class="sponsor-cta">
+          Looking to sponsor us? <a href="https://psuccso.org/sponsor-us">Click here!</a>
+        </h3>
       </div>
     </section>
   </div>
@@ -157,6 +162,22 @@ section.sponsors-cont {
 .resource div {
   color: #9AA5CB;
   padding: 5px 5px 0 5px;
+}
+
+.sponsor-cta {
+  margin-top: 2em;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #9AA5CB;
+}
+
+.sponsor-cta a {
+  color: #8594C0;
+  text-decoration: underline;
+}
+
+.sponsor-cta a:hover {
+  color: #007BFF;
 }
 
 .tier-sponsors {
