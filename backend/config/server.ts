@@ -4,5 +4,7 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
-  proxy: env.bool('IS_PROXIED', true),
+  proxy: {
+    koa: env.bool('IS_PROXIED', true),
+  },
 });
